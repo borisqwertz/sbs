@@ -1,0 +1,245 @@
+<!-- my attempt at creating a santorini sandbox -borisqwertz -->
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>SBS - Santorini Board Sandbox</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/mystyle.css">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="santoriniboardscript.js"></script>
+</head>
+
+<body>
+    <div class="buttonDiv">
+        <button id="writeURLButton" title="Writes boardstate and gods into URL">Write in URL</button>
+        <button id="loadBoardButton">Reload from URL</button>
+        <button id="resetButton" title="Resets board and URL">Reset</button>
+        <button id="clearLogButton">Clear log</button>
+        <button id="createShortURLButton" title="Save board into URL and create tinyurl">Create short URL</button>
+        <input type="text" id="textURL" value="ShortURL" readonly>
+    </div>
+
+    <div class="row">
+        <div class="col-8 boardDiv">
+            <table class="board" oncontextmenu="return false">
+                <tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <th>5</th>
+                <td id="A5" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                    data-token3="0" data-token4="0" class="dropZone"></td>
+                <td id="B5" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                    data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                <td id="C5" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                    data-token3="0" data-token4="0" class="dropZone"></td>
+                <td id="D5" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                    data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                <td id="E5" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                    data-token3="0" data-token4="0" class="dropZone"></td>
+                <th></th>
+                </tr>
+
+                <tr>
+                    <th>4</th>
+                    <td id="A4" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="B4" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="C4" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="D4" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="E4" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <th>3</th>
+                    <td id="A3" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="B3" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="C3" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="D3" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="E3" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <th>2</th>
+                    <td id="A2" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="B2" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="C2" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="D2" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="E2" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <th>1</th>
+                    <td id="A1" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="B1" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="C1" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <td id="D1" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone darkCell"></td>
+                    <td id="E1" data-dome="0" data-blocks="0" data-worker="0" data-token1="0" data-token2="0"
+                        data-token3="0" data-token4="0" class="dropZone"></td>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th></th>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="col-4 toolbox">
+            <br>
+            <div class="col-12 figDiv">
+                <div id="p1">
+                    <img src="images/p1Male.svg" alt="p1Male" id="p1Male" class="figures" data-worker="p1Male">
+                    <img src="images/p1Female.svg" alt="p1Female" id="p1Female" class="figures" data-worker="p1Female">
+                    <img src="images/p1Token.svg" alt="p1Token" id="p1Token" class="figures" data-token="p1Token">
+
+                    <img src="images/p2Male.svg" alt="p2Male" id="p2Male" class="figures" data-worker="p2Male">
+                    <img src="images/p2Female.svg" alt="p2Female" id="p2Female" class="figures" data-worker="p2Female">
+                    <img src="images/p2Token.svg" alt="p2Token" id="p2Token" class="figures" data-token="p2Token">
+                </div>
+                <div id="p3">
+                    <img src="images/p3Male.svg" alt="p3Male" id="p3Male" class="figures" data-worker="p3Male">
+                    <img src="images/p3Female.svg" alt="p3Female" id="p3Female" class="figures" data-worker="p3Female">
+                    <img src="images/p3Token.svg" alt="p3Token" id="p3Token" class="figures" data-token="p3Token">
+
+                    <img src="images/p4Male.svg" alt="p4Male" id="p4Male" class="figures" data-worker="p4Male">
+                    <img src="images/p4Female.svg" alt="p4Female" id="p4Female" class="figures" data-worker="p4Female">
+                    <img src="images/p4Token.svg" alt="p4Token" id="p4Token" class="figures" data-token="p4Token">
+                </div>
+            </div>
+
+            <div class="col-12 logDiv">
+                <br>
+                <textarea name="moveText" id="moveText" cols="35" rows="11" autocomplete="off">Gamelog:</textarea>
+            </div>
+
+            <div class="col-12">
+                <br>
+                <label for="gods" title="Select god/hero and click the player button to match">Select Gods:</label>
+                <select name="gods" id="godslist">
+                    <option>Mortal</option>
+                    <optgroup label="Gods"></optgroup>
+                    <option> Aeolus </option>
+                    <option> Aphrodite </option>
+                    <option> Apollo </option>
+                    <option> Ares </option>
+                    <option> Artemis </option>
+                    <option> Asteria </option>
+                    <option> Athena </option>
+                    <option> Atlas </option>
+                    <option> Bia </option>
+                    <option> Castor & Pollux </option>
+                    <option> Chaos </option>
+                    <option> Charon </option>
+                    <option> Charybdis </option>
+                    <option> Chronus </option>
+                    <option> Circe </option>
+                    <option> Clio </option>
+                    <option> Demeter </option>
+                    <option> Dionysus </option>
+                    <option> Eris </option>
+                    <option> Eros </option>
+                    <option> Europa & Talus </option>
+                    <option> Gaea </option>
+                    <option> Graeae </option>
+                    <option> Hades </option>
+                    <option> Harpies </option>
+                    <option> Hecate </option>
+                    <option> Hephaestus </option>
+                    <option> Hera </option>
+                    <option> Hermes </option>
+                    <option> Hestia </option>
+                    <option> Hippolyta </option>
+                    <option> Hydra </option>
+                    <option> Hypnus </option>
+                    <option> Iris </option>
+                    <option> Limus </option>
+                    <option> Maenads </option>
+                    <option> Medusa </option>
+                    <option> Minotaur </option>
+                    <option> Morpheus </option>
+                    <option> Nemesis </option>
+                    <option> Nyx </option>
+                    <option> Pan </option>
+                    <option> Pegasus </option>
+                    <option> Persephone </option>
+                    <option> Poseidon </option>
+                    <option> Prometheus </option>
+                    <option> Proteus </option>
+                    <option> Scylla </option>
+                    <option> Selene </option>
+                    <option> Siren </option>
+                    <option> Tartarus </option>
+                    <option> Terpsichore </option>
+                    <option> Triton </option>
+                    <option> Tyche </option>
+                    <option> Urania </option>
+                    <option> Zeus </option>
+                    <optgroup label="Heroes"></optgroup>
+                    <option> Achilles </option>
+                    <option> Adonis </option>
+                    <option> Atalanta </option>
+                    <option> Bellerophon </option>
+                    <option> Heracles </option>
+                    <option> Jason </option>
+                    <option> Medea </option>
+                    <option> Odysseus </option>
+                    <option> Polyphemus </option>
+                    <option> Theseus </option>
+                </select>
+                <br>
+                <button id="p1Button">Player 1</button>
+                <button id="p2Button">Player 2</button>
+                <button id="p3Button">Player 3</button>
+                <button id="p4Button">Player 4</button>
+                <br>
+                <br>
+                <a href="https://en.doc.boardgamearena.com/Gamehelpsantorini#List_of_Powers_(64)" title="List of gods available on boardgamearena" target="_blank">List
+                    of Gods</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
