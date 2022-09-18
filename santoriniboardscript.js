@@ -435,10 +435,10 @@ $(document).ready(function () {
     /*
     Touch support
     */
-   
-    $("#touchNo").click(function () { $(".touchDiv").hide(), touchMove= 0 });
+
+    $("#touchNo").click(function () { $(".touchDiv").hide(), touchMove = 0 });
     // for firefox
-    if ($("#touchNo").is(":checked")) { $(".touchDiv").hide(), touchMove= 0 };
+    if ($("#touchNo").is(":checked")) { $(".touchDiv").hide(), touchMove = 0 };
 
     $("#touchYes").click(function () {
         if (!(touchSupp)) {
@@ -447,35 +447,35 @@ $(document).ready(function () {
             touchDome = 0;
             touchRemove = 0;
             touchMove = 1;
+
             $(".touchDiv").append(
                 $(document.createElement("button")).prop({
                     type: "button",
                     innerHTML: "move",
                     id: "moveButton",
-                }).click(function () { touchBuild = 0, touchDome = 0, touchRemove = 0, touchMove = 1 }),
+                }).click(function () { touchBuild = 0, touchDome = 0, touchRemove = 0, touchMove = 1, $("#moveButton").css("background-color", "yellow"), $("#domeButton").css("background-color", ""), $("#removeButton").css("background-color", ""), $("#buildButton").css("background-color", "") }),
 
                 $(document.createElement("button")).prop({
                     type: "button",
                     innerHTML: "dome",
                     id: "domeButton",
-                }).click(function () { touchBuild = 0, touchDome = 1, touchRemove = 0, touchMove = 0 }),
+                }).click(function () { touchBuild = 0, touchDome = 1, touchRemove = 0, touchMove = 0, $("#moveButton").css("background-color", ""), $("#domeButton").css("background-color", "yellow"), $("#removeButton").css("background-color", ""), $("#buildButton").css("background-color", "") }),
 
                 $(document.createElement("button")).prop({
                     type: "button",
                     innerHTML: "remove",
                     id: "removeButton"
-                }).click(function () { touchBuild = 0, touchDome = 0, touchRemove = 1, touchMove = 0 }),
+                }).click(function () { touchBuild = 0, touchDome = 0, touchRemove = 1, touchMove = 0, $("#moveButton").css("background-color", ""), $("#domeButton").css("background-color", ""), $("#removeButton").css("background-color", "yellow"), $("#buildButton").css("background-color", "") }),
 
                 $(document.createElement("button")).prop({
                     type: "button",
                     innerHTML: "build",
                     id: "buildButton"
-                }).click(function () { touchBuild = 1, touchDome = 0, touchRemove = 0, touchMove = 0 }),
+                }).click(function () { touchBuild = 1, touchDome = 0, touchRemove = 0, touchMove = 0, $("#moveButton").css("background-color", ""), $("#domeButton").css("background-color", ""), $("#removeButton").css("background-color", ""), $("#buildButton").css("background-color", "yellow") }),
             )
-
+            $("#moveButton").css("background-color", "yellow");
         }
     });
-
 
 
 });
