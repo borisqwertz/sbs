@@ -443,6 +443,10 @@ $(document).ready(function () {
     $("#touchYes").click(function () {
         if (!(touchSupp)) {
             touchSupp = 1;
+            touchBuild = 0;
+            touchDome = 0;
+            touchRemove = 0;
+            touchMove = 1;
             $(".touchDiv").append(
                 $(document.createElement("button")).prop({
                     type: "button",
