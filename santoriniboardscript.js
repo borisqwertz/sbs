@@ -38,12 +38,6 @@ $(document).ready(function () {
         }
         var i = (Number)($(this).attr("data-blocks"));
 
-        // touch button toogle
-        // maybe a move/ build stuff toogle button and i have a mouse option
-        // wip mobile touch support making it possible to drag worken/token on field without building a block
-        $(".workerOnField").on("touchstart", function () { return; });
-        $(".tokenOnField").on("touchstart", function () { return; });
-
         if (touchBuild) {
             if (i < 3 && $(this).attr("data-dome") == 0) {
                 i++;
