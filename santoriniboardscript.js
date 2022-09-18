@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     var droppedInCell, oldCell, currentClass, currentToken;
     var turnNumber = 1;
+    var touchSupp, touchMove, touchBuild, touchDome, touchRemove;
     var moveLog = $("#moveText").val(); // \n for linebreak
 
     // On new pageload draw the board with the params from the URL
@@ -26,12 +27,70 @@ $(document).ready(function () {
     // Disable Middle Mouse Scroll
     $("body").mousedown(function (e) { if (e.button == 1) return false });
 
+
+
+
+
     // If mouse button pressed on board do this
     $(".dropZone").mousedown(function () {
-        if ($(".workerOnField:hover").length > 0 || $(".tokenOnField:hover").length > 0) {
+        if ($(".workerOnField:hover").length > 0 || $(".tokenOnField:hover").length > 0 || touchMove) {
             return;
         }
         var i = (Number)($(this).attr("data-blocks"));
+
+        // touch button toogle
+        // maybe a move/ build stuff toogle button and i have a mouse option
+        // wip mobile touch support making it possible to drag worken/token on field without building a block
+        $(".workerOnField").on("touchstart", function () { return; });
+        $(".tokenOnField").on("touchstart", function () { return; });
+
+        if (touchBuild) {
+            if (i < 3 && $(this).attr("data-dome") == 0) {
+                i++;
+                $(this).attr("data-blocks", i)
+                moveLog += "\n" + turnNumber + ".\tBUILD block(" + i + ")" + " on " + $(this).attr("id");
+                updateLog();
+            }
+            else if ($(this).attr("data-dome") == 0) {
+                $(this).attr("data-dome", "1");
+                moveLog += "\n" + turnNumber + ".\tBUILD dome on " + $(this).attr("id");
+                updateLog();
+            }
+            draw(this);
+            return;
+        }
+
+        if (touchRemove) {
+            if ($(this).attr("data-dome") == 1) {
+                $(this).attr("data-dome", "0");
+                moveLog += "\n" + turnNumber + ".\tremove dome from " + $(this).attr("id");
+                updateLog();
+            } else if (i > 0) {
+                i--;
+                $(this).attr("data-blocks", i)
+                moveLog += "\n" + turnNumber + ".\tremove block(" + i + ") from " + $(this).attr("id");
+                updateLog();
+            }
+            draw(this);
+            return;
+        }
+        if (touchDome) {
+            switch ($(this).attr("data-dome")) {
+                case "1":
+                    $(this).attr("data-dome", "0");
+                    moveLog += "\n" + turnNumber + ".\tremove dome from " + $(this).attr("id");
+                    updateLog();
+                    break;
+                case "0":
+                    $(this).attr("data-dome", "1");
+                    moveLog += "\n" + turnNumber + ".\tBUILD dome on " + $(this).attr("id");
+                    updateLog();
+                    break;
+            }
+            draw(this);
+            return;
+        }
+
         switch (event.which) {
             // Left mouse button add blocks
             case 1:
@@ -283,7 +342,7 @@ $(document).ready(function () {
         for (var pair of params.entries()) {
             // use string slice to find the right data attr und cell
             switch (pair[0].slice(3)) {
-                case "blocks":      
+                case "blocks":
                     $("#" + pair[0].slice(0, 2)).attr("data-blocks", pair[1]);
                     draw($("#" + pair[0].slice(0, 2)));
                     break;
@@ -378,5 +437,47 @@ $(document).ready(function () {
         // update the page's URL
         window.history.replaceState({}, '', `${location.pathname}?${newParams}`);
     }
+
+    /*
+    Touch support
+    */
+   
+    $("#touchNo").click(function () { $(".touchDiv").hide(), touchMove= 0 });
+    // for firefox
+    if ($("#touchNo").is(":checked")) { $(".touchDiv").hide(), touchMove= 0 };
+
+    $("#touchYes").click(function () {
+        if (!(touchSupp)) {
+            touchSupp = 1;
+            $(".touchDiv").append(
+                $(document.createElement("button")).prop({
+                    type: "button",
+                    innerHTML: "move",
+                    id: "moveButton",
+                }).click(function () { touchBuild = 0, touchDome = 0, touchRemove = 0, touchMove = 1 }),
+
+                $(document.createElement("button")).prop({
+                    type: "button",
+                    innerHTML: "dome",
+                    id: "domeButton",
+                }).click(function () { touchBuild = 0, touchDome = 1, touchRemove = 0, touchMove = 0 }),
+
+                $(document.createElement("button")).prop({
+                    type: "button",
+                    innerHTML: "remove",
+                    id: "removeButton"
+                }).click(function () { touchBuild = 0, touchDome = 0, touchRemove = 1, touchMove = 0 }),
+
+                $(document.createElement("button")).prop({
+                    type: "button",
+                    innerHTML: "build",
+                    id: "buildButton"
+                }).click(function () { touchBuild = 1, touchDome = 0, touchRemove = 0, touchMove = 0 }),
+            )
+
+        }
+    });
+
+
 
 });
