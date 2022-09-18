@@ -436,9 +436,12 @@ $(document).ready(function () {
     Touch support
     */
 
-    $("#touchNo").click(function () { $(".touchDiv").hide(), touchMove = 0 });
+    $("#touchNo").click(function () {
+        touchSupp = 0, touchMove = 0, touchBuild = 0, touchDome = 0, touchRemove = 0
+        $(".touchDiv").hide()
+    });
     // for firefox
-    if ($("#touchNo").is(":checked")) { $(".touchDiv").hide(), touchMove = 0 };
+    if ($("#touchNo").is(":checked")) { touchSupp = 0, touchMove = 0, touchBuild = 0, touchDome = 0, touchRemove = 0, $(".touchDiv").hide() };
 
     $("#touchYes").click(function () {
         if (!(touchSupp)) {
